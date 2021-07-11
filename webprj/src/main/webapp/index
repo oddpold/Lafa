@@ -1,0 +1,9 @@
+이 파일 내용이 나오면 망한거임...
+
+index.jsp를 controller 클래스에 구현 하고 스프링에 dispatcher를 통해서 호출하는 구조이다
+index라는 alias로 호출 되므로, 이 파일이 있으면 이클립스에서 브라우저에 호출이 이루어진다
+dispatcher에서 루트를 매핑하므로 index.jsp가 있으면 안된다
+이것을 외부 접근이 안되는 /WEB-INF/view/index.jsp와 같이 숨겨두고
+controller 클래스에서 호출을 한다. 이게 MVC(Model, View, Controller)의 구현 방식
+따라서 각각의 요소만 유지보수하면 된다
+디버깅 할 때도 이 페이지에 와서 Ctrl+F11 해야만 브라우저에 재대로된 주소를 호출한다
