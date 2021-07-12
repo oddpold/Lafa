@@ -8,19 +8,36 @@
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<!-- index 페이지 호출을 다음의 클래스로 매핑 한다. 패키지명까지 빠짐없이 작성하고 .class는 붙이지 않는다 -->
-	<bean id="/index" class="com.company.web.controller.IndexController" />
-	<bean id="/notice/list" class="com.company.web.controller.notice.ListController" />
-	<bean id="/notice/detail" class="com.company.web.controller.notice.DetailController" />
+	<bean id="/index"
+		class="com.company.web.controller.IndexController" />
+	<bean id="/notice/list"
+		class="com.company.web.controller.notice.ListController" />
+	<bean id="/notice/detail"
+		class="com.company.web.controller.notice.DetailController" />
+
+	<!-- tiles를 이용해서 화면을 조립하는 viewresolver를 사용한다 -->
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="1" />
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="/WEB-INF/tiles.xml" />
+	</bean>
 
 	<!-- controller클래스에서 전체 경로를 쓰기 귀찮으니까 앞뒤에 경로명을 자동 완성 해준다 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="prefix" value="/WEB-INF/view/" ></property>
 		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="1" />
 	</bean>
 
 	<!-- mvc 관련 스키마가 자동등록이 안된다. 수동으로 해줘야 한다 -->
-	<!-- 리소스 즉, images, css, js 같은 것들이 스프링에서 접근 불가로 되어 있으므로 사용 가능하도록 매핑을 해야 한다 -->
+	<!-- 리소스 즉, images, css, js 같은 것들이 스프링에서 접근 불가로 되어 있으므로 사용 가능하도록 매핑을 해야 
+		한다 -->
 	<mvc:resources location="/html/" mapping="/**"></mvc:resources>
 
 </beans>
